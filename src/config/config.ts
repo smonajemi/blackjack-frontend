@@ -3,14 +3,15 @@ import { extendTheme } from '@mui/material/styles';
 import { Router, Navigation } from '@toolpad/core/AppProvider';
 
 export const NAVIGATION: Navigation = [
+
   {
     kind: 'header',
     title: 'Main items',
   },
-  // {
-  //   segment: 'dashboard',
-  //   title: 'Dashboard',
-  // },
+  {
+    segment: 'dashboard',
+    title: 'Dashboard',
+  },
   {
     segment: 'blackjack',
     title: 'Blackjack',
@@ -18,29 +19,7 @@ export const NAVIGATION: Navigation = [
   {
     kind: 'divider',
   },
-  // {
-  //   kind: 'header',
-  //   title: 'Analytics',
-  // },
-  // {
-  //   segment: 'reports',
-  //   title: 'Reports',
   
-  //   children: [
-  //     {
-  //       segment: 'sales',
-  //       title: 'Sales',
-  //     },
-  //     {
-  //       segment: 'traffic',
-  //       title: 'Traffic',
-  //     },
-  //   ],
-  // },
-  // {
-  //   segment: 'integrations',
-  //   title: 'Integrations',
-  // },
 ];
 
 export const demoTheme = extendTheme({
@@ -57,9 +36,10 @@ export const demoTheme = extendTheme({
   },
 });
 
+
 export const useDemoRouter = (initialPath: string): Router => {
   const [pathname, setPathname] = React.useState(initialPath);
-
+console.log(pathname)
   const router = React.useMemo(
     () => ({
       pathname,

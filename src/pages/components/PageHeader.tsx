@@ -12,7 +12,7 @@ const PageHeader = () => {
   }));
 
   return (
-    <Grid container spacing={2} style={{ marginBottom: 15}}>
+    <Grid container spacing={2} >
       <Grid item xs={12}>
         <Skeleton height={150} />
       </Grid>
