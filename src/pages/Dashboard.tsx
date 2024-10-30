@@ -10,23 +10,20 @@ import { Box, Typography } from '@mui/material';
 
 const DemoPageContent = ({ pathname }: { pathname: string }) => {
   // Determine which content to display based on the pathname
-  let content;
-
-  switch (pathname) {
-    case '/dashboard':
-      content = <Typography variant="h4">Hello Dashboard</Typography>;
-      break;
-    case '/blackjack':
-      content = (
-        <Grid container spacing={2}>
-          <CardGrid cards={myCards} />
-        </Grid>
-      );
-      break;
-    default:
-      content = <Typography variant="h4">Select a tab to view content</Typography>;
-      break;
-  }
+  const renderContent = () => {
+    switch (pathname) {
+      case '/dashboard':
+        return <Typography variant="h4">Hello Dashboard</Typography>;
+      case '/blackjack':
+        return (
+          <Grid container spacing={2}>
+            <CardGrid cards={myCards} />
+          </Grid>
+        );
+      default:
+        return <Typography variant="h4">Select a tab to view content</Typography>;
+    }
+  };
 
   return (
     <Box
@@ -39,7 +36,8 @@ const DemoPageContent = ({ pathname }: { pathname: string }) => {
       }}
     >
       <PageContainer>
-        {content}
+        {/* <PageHeader /> */}
+        {renderContent()}
       </PageContainer>
     </Box>
   );

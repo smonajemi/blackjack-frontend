@@ -54,6 +54,11 @@ import jackOfSpades from '../../images/playing_cards/jack_of_spades.png';
 import queenOfSpades from '../../images/playing_cards/queen_of_spades.png';
 import kingOfSpades from '../../images/playing_cards/king_of_spades.png';
 
+import kingClub from '../../images/kingHeart.png'
+import queenClub from '../../images/queenHeart.png'
+import jackClub from '../../images/jackDiamond.png'
+import aceClub from '../../images/aceHeart.png'
+
 const myCards = [
     // Clubs
     { name: '2 of Clubs', imageUrl: twoOfClubs, rank: 2 },
@@ -65,10 +70,10 @@ const myCards = [
     { name: '8 of Clubs', imageUrl: eightOfClubs, rank: 8 },
     { name: '9 of Clubs', imageUrl: nineOfClubs, rank: 9 },
     { name: '10 of Clubs', imageUrl: tenOfClubs, rank: 10 },
-    { name: 'Ace of Clubs', imageUrl: aceOfClubs, rank: 14 },
-    { name: 'Jack of Clubs', imageUrl: jackOfClubs, rank: 11 },
-    { name: 'Queen of Clubs', imageUrl: queenOfClubs, rank: 12 },
-    { name: 'King of Clubs', imageUrl: kingOfClubs, rank: 13 },
+    { name: 'Ace of Clubs', imageUrl: aceClub, rank: 14 },
+    { name: 'Jack of Clubs', imageUrl: jackClub, rank: 11 },
+    { name: 'Queen of Clubs', imageUrl: queenClub, rank: 12 },
+    { name: 'King of Clubs', imageUrl: kingClub, rank: 13 },
 
     // Diamonds
     { name: '2 of Diamonds', imageUrl: twoOfDiamonds, rank: 2 },
