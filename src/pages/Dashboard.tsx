@@ -47,7 +47,7 @@ const DemoPageContent = ({ pathname }: { pathname: string }) => {
 
 const DashboardLayoutBasic: React.FC<{ window?: () => Window }> = (props) => {
   const { window } = props;
-  const router = useDemoRouter('/blackjack');
+  const router = useDemoRouter('/');
   const demoWindow = window ? window() : undefined;
 
   return (
