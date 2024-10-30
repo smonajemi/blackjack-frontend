@@ -3,8 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
+    "@mui/styled-engine-sc": "^6.1.5",
+    "@types/axios": "^0.9.36",
+    "ajv": "^8.17.1",
+    "axios": "^1.7.7",
+    "css-select": "^5.1.0",
+    "nth-check": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "resolve-url-loader": "^5.0.0",
+    "styled-components": "^6.1.13",
     "web-vitals": "^4.2.4"
   },
   "devDependencies": {
@@ -16,7 +29,6 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "react-scripts": "^5.0.1",
-    "resolve-url-loader": "^3.1.0",
     "typescript": "^5.6.3",
     "webpack-dev-server": "^5.1.0"
   },
@@ -46,10 +58,9 @@
   },
   "overrides": {
     "nth-check": "^2.1.1",
-    "css-select": "^4.2.1",
-    "postcss": "^8.4.21"
+    "css-select": "^5.1.0",
+    "resolve-url-loader": "^5.0.0"
   },
-
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "author": "Sina M",
