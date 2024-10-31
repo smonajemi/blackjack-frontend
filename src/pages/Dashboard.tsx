@@ -1,23 +1,26 @@
 // DashboardLayoutBasic.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { AppProvider, DashboardLayout, PageContainer } from '@toolpad/core';
 import Grid from '@mui/material/Grid';
 import { NAVIGATION, demoTheme, useRouter } from '../config/config';
 import CardGrid from './components/CardGrid';
-import PageHeader from './components/PageHeader';
 import cardDeck from './components/CardDeck'; // Adjust the path as necessary
-import { Box, createTheme, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 const PageContent = ({ pathname }: { pathname: string }) => {
   // Determine which content to display based on the pathname
-  const renderContent = () => {
+  const renderPageContent = () => {
     switch (pathname) {
       case '/dashboard':
         return <Typography variant="h4">Hello Dashboard</Typography>;
       case '/blackjack':
         return (
-          <Grid container spacing={2} >
-            <CardGrid cards={cardDeck} />
+          <Grid container spacing={2}>
+            {cardDeck.length > 0 ? (
+              <CardGrid cards={cardDeck}/>
+            ) : (
+              <Typography variant="h6">No cards available</Typography>
+            )}
           </Grid>
         );
       default:
@@ -36,24 +39,20 @@ const PageContent = ({ pathname }: { pathname: string }) => {
       }}
     >
       <PageContainer>
-        {/* <PageHeader /> */}
-        {renderContent()}
+        {renderPageContent()}
       </PageContainer>
     </Box>
   );
 };
 
-const DashboardLayoutBasic: React.FC<{ window?: () => Window }> = (props) => {
-  const { window } = props;
+const Dashboard: React.FC = (props) => { // No need for window prop
   const router = useRouter('/');
-  const demoWindow = window ? window() : undefined;
 
   return (
     <AppProvider
       navigation={NAVIGATION}
       router={router}
       theme={demoTheme}
-      window={demoWindow}
       branding={{
         logo: <img src="https://mui.com/static/logo.png" alt="BJ logo" />,
         title: 'BJ',
@@ -66,4 +65,4 @@ const DashboardLayoutBasic: React.FC<{ window?: () => Window }> = (props) => {
   );
 };
 
-export default DashboardLayoutBasic;
+export default Dashboard;
