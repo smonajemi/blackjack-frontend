@@ -2,52 +2,108 @@ import React from 'react';
 import { Grid, Typography, Box, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-// Update the props to accept deckCount, cardsRemaining, and chancesToWin
+// Update the props to accept all necessary statistics
 interface PageHeaderProps {
-  deckCount: number;
-  cardsRemaining: number;
-  chancesToWin: number; // New prop for chances to win
+  deckCount: number;                // Number of decks in play
+  cardsRemaining: number;           // Number of cards remaining in the deck
+  chancesToWin: number;             // Percentage chance to win
+  totalWins: number;                // Total number of wins
+  totalLosses: number;              // Total number of losses
+  pushes: number;                   // Total number of pushes
+  blackjackCount: number;           // Total number of blackjacks
+  dealersUpCard: number;            // Dealer's up card value
+  playerHandValue: number;          // Player's current hand value
+  dealerHandValue: number;          // Dealer's current hand value
+  cardsPlayed: number;              // Total number of cards played
+  numberOfSplits: number;           // Number of splits that have occurred
+  numberOfDoubleDowns: number;      // Number of double downs that have occurred
+  winningPercentage: number;         // Winning percentage
+  lastHandResult: 'Win' | 'Loss' | 'Push'; // Result of the last hand
+  // cardsRemainingInDecks: number;    // Total cards remaining across all decks
+  gameRoundNumber: number;          // Current game round number
+  highScore: number;                // Player's high score
+  riskAssessment: 'Low' | 'Medium' | 'High'; // Assessment of risk level
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ deckCount, cardsRemaining, chancesToWin }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({
+  deckCount,
+  cardsRemaining,
+  chancesToWin,
+  totalWins,
+  totalLosses,
+  pushes,
+  blackjackCount,
+  dealersUpCard,
+  playerHandValue,
+  dealerHandValue,
+  cardsPlayed,
+  numberOfSplits,
+  numberOfDoubleDowns,
+  winningPercentage,
+  lastHandResult,
+  // cardsRemainingInDecks,
+  gameRoundNumber,
+  highScore,
+  riskAssessment,
+}) => {
   const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
     backgroundColor: theme.palette.action.hover,
     borderRadius: theme.shape.borderRadius,
     height,
-    display: 'flex', // Added to align contents inside the Skeleton
-    alignItems: 'center', // Vertically center the content
-    justifyContent: 'center', // Horizontally center the content
-    padding: theme.spacing(2), // Add padding for better spacing
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing(2),
   }));
+
+  // Create an array of stats to be displayed
+  const stats = [
+    { label: 'Decks', value: deckCount },
+    { label: 'Cards Remaining', value: cardsRemaining },
+    { label: 'Chances to Win', value: `${chancesToWin}%` },
+    { label: 'Total Wins', value: totalWins },
+    { label: 'Total Losses', value: totalLosses },
+    { label: 'Pushes', value: pushes },
+    { label: 'Blackjack Count', value: blackjackCount },
+    { label: "Dealer's Up Card", value: dealersUpCard },
+    { label: 'Player Hand Value', value: playerHandValue },
+    { label: 'Dealer Hand Value', value: dealerHandValue },
+    { label: 'Cards Played', value: cardsPlayed },
+    { label: 'Number of Splits', value: numberOfSplits },
+    { label: 'Number of Double Downs', value: numberOfDoubleDowns },
+    { label: 'Winning Percentage', value: `${winningPercentage}%` },
+    { label: 'Last Hand Result', value: lastHandResult },
+    // { label: 'Cards Remaining in Decks', value: cardsRemainingInDecks },
+    { label: 'Game Round Number', value: gameRoundNumber },
+    { label: 'High Score', value: `$${highScore}` },
+    { label: 'Risk Assessment', value: riskAssessment },
+  ];
 
   return (
     <Grid container spacing={1} style={{ marginBottom: 10, marginTop: 2 }}>
-      <Grid item xs={12}>
-        <Skeleton height={120}>
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start', // Align items to the left
-              width: '100%',
-            }}
-          >
-            <List>
-              <ListItem>
-                <Typography variant="subtitle2">Decks: {deckCount}</Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="subtitle2">Cards Remaining: {cardsRemaining}</Typography>
-              </ListItem>
-              <ListItem>
-                <Typography variant="subtitle2">Chances to Win: % {chancesToWin}</Typography>
-              </ListItem>
-            </List>
-          </Box>
-        </Skeleton>
-      </Grid>
-      <Grid item xs={12} />
+    <Grid item xs={12}>
+      <Skeleton height={120}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap', // Allow wrapping of items
+            alignItems: 'center',
+            width: '100%',
+            padding: 1, // Add padding for better spacing
+          }}
+        >
+          {stats.map((stat, index) => (
+            <Box key={index} sx={{ margin: 1 }}>
+              <Typography variant="subtitle2">
+                {stat.label}: {stat.value}
+              </Typography>
+            </Box>
+          ))}
+        </Box>
+      </Skeleton>
     </Grid>
+    <Grid item xs={12} />
+  </Grid>
   );
 };
 
