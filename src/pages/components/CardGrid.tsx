@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { Card, CardMedia, CardContent, Typography, Button, Box, IconButton } from '@mui/material';
+import { Card, CardMedia, Typography, Button, Box, IconButton } from '@mui/material';
 import CenteredLoader from '../../components/Loader';
 import { Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
 import PageHeader from './PageHeader';
@@ -51,32 +51,35 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
   }, [deckCount]);
 
   const handleAddClick = (cardName: string) => {
-    setCardCounts(prevCounts =>
-      prevCounts.map(card =>
+    setCardCounts(prevCounts => {
+      const updatedCounts = prevCounts.map(card =>
         card.name === cardName && card.count < card.originalCount * deckCount
           ? { ...card, count: card.count + 1 }
           : card
-      )
-    );
-    setTotalCardsRemaining(cardCounts.reduce((sum, card) => sum + card.count, 0))
-
+      );
+      const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
+      setTotalCardsRemaining(newTotal);
+      return updatedCounts;
+    });
   };
 
   const handleRemoveClick = (cardName: string) => {
-    setCardCounts(prevCounts =>
-      prevCounts.map(card =>
+    setCardCounts(prevCounts => {
+      const updatedCounts = prevCounts.map(card =>
         card.name === cardName && card.count > 0
           ? { ...card, count: card.count - 1 }
           : card
-      )
-    );
-    setTotalCardsRemaining(cardCounts.reduce((sum, card) => sum + card.count, 0))
-
+      );
+      const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
+      setTotalCardsRemaining(newTotal);
+      return updatedCounts;
+    });
   };
 
   const handleReset = () => {
     setDeckCount(4);
     setCardCounts(initialCards);
+    setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
   };
 
   useEffect(() => {
@@ -121,7 +124,9 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
                       <IconButton aria-label="remove" size="small" color="error" onClick={(e) => {
                         e.stopPropagation();
                         handleRemoveClick(card.name);
-                      }} style={{ marginTop: 10 }}>
+                      }} style={{ marginTop: 10 }}
+                        disabled={card.count === 0}
+                      >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
                     </Box>

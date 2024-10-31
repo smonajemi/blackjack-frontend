@@ -40,7 +40,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ deckCount, cardsRemaining, chan
                 <Typography variant="subtitle2">Cards Remaining: {cardsRemaining}</Typography>
               </ListItem>
               <ListItem>
-                <Typography variant="subtitle2">Chances to Win: {chancesToWin}</Typography>
+                <Typography variant="subtitle2">Chances to Win: % {chancesToWin}</Typography>
               </ListItem>
             </List>
           </Box>
