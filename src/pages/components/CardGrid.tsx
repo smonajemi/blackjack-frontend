@@ -34,7 +34,7 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
   const initialCards: CardCount[] = Object.entries(groupedCards).reduce<CardCount[]>((acc, [rank, cardArray]) => {
     const cardCount: CardCount = {
       rank: Number(rank),
-      count: cardArray.length * 2, // Initialize count based on 2 decks
+      count: cardArray.length * 4, // Initialize count based on 2 decks
       originalCount: cardArray.length, // Store the original count for comparison
       name: cardArray[0].name, // Use the name of the first card in the group for display
       imageUrl: cardArray[0].imageUrl // Use the image URL of the first card in the group for display
@@ -61,8 +61,6 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
     );
   }, [deckCount]); // Run this effect when deckCount changes
 
-  // Update total card counts whenever cardCounts change
-  const totalCardCounts = cardCounts.reduce((sum, card) => sum + card.count, 0);
 
   // Handle click on the add button to increase count
   const handleAddClick = (cardName: string) => {
@@ -89,7 +87,7 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
 
   // Reset counts to initial values
   const handleReset = () => {
-    setDeckCount(2); // Reset to 2 decks
+    setDeckCount(4); // Reset to 2 decks
     setCardCounts(initialCards); // Reset counts to their initial state
   };
 
@@ -115,22 +113,14 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
           {/* Centered Box for the button and input */}
           <Box display="flex" justifyContent="center" alignItems="center" marginBottom={2}>
             <Button
-              variant="contained"
-              color="primary"
+              variant="outlined"
+              color="error"
               onClick={handleReset}
               style={{ marginRight: 15 }}
             >
               Reset Counts
             </Button>
-            <TextField
-              type="number"
-              value={deckCount}
-              onChange={(e) => setDeckCount(Math.max(1, Number(e.target.value)))} // Prevent negative or zero values
-              label="Number of Decks"
-              variant="outlined"
-              size="small"
-              style={{ width: '150px' }} // Optional: set width for input
-            />
+         
           </Box>
           <Grid container spacing={2} style={{ marginTop: 15, justifyContent: 'center' }}>
             {cardCounts
@@ -145,12 +135,10 @@ const CardGrid: React.FC<{ cards: CardData[] }> = ({ cards }) => {
                   >
                     <CardMedia component="img" image={card.imageUrl} alt={card.name} />
                     <Typography variant="caption" color="textSecondary">
-                        {`Max allowed: ${card.originalCount * deckCount}`}
+                        {`Max allowed: ${card.count}`}
                       </Typography>
                     <Box>
-                      {/* <Typography variant="body2" color="textSecondary">
-                        {`# of Cards: ${card.count}`}
-                      </Typography> */}
+                  
                       <IconButton aria-label="add" size="small" color="success" onClick={(e) => {
                         e.stopPropagation();
                         handleAddClick(card.name);
