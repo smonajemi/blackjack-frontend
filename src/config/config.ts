@@ -37,7 +37,7 @@ export const demoTheme = extendTheme({
 });
 
 
-export const useDemoRouter = (initialPath: string): Router => {
+export const useRouter = (initialPath: string): Router => {
   const [pathname, setPathname] = React.useState(initialPath);
 console.log(pathname)
   const router = React.useMemo(
@@ -55,6 +55,6 @@ console.log(pathname)
 export const config = {
   NAVIGATION,
   demoTheme,
-  useDemoRouter,
+  useRouter,
 } as const;
 

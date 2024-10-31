@@ -2,13 +2,13 @@
 import React from 'react';
 import { AppProvider, DashboardLayout, PageContainer } from '@toolpad/core';
 import Grid from '@mui/material/Grid';
-import { NAVIGATION, demoTheme, useDemoRouter } from '../config/config';
+import { NAVIGATION, demoTheme, useRouter } from '../config/config';
 import CardGrid from './components/CardGrid';
 import PageHeader from './components/PageHeader';
-import myCards from './components/CardDeck'; // Adjust the path as necessary
+import cardDeck from './components/CardDeck'; // Adjust the path as necessary
 import { Box, createTheme, Typography } from '@mui/material';
 
-const DemoPageContent = ({ pathname }: { pathname: string }) => {
+const PageContent = ({ pathname }: { pathname: string }) => {
   // Determine which content to display based on the pathname
   const renderContent = () => {
     switch (pathname) {
@@ -16,8 +16,8 @@ const DemoPageContent = ({ pathname }: { pathname: string }) => {
         return <Typography variant="h4">Hello Dashboard</Typography>;
       case '/blackjack':
         return (
-          <Grid container spacing={2}>
-            <CardGrid cards={myCards} />
+          <Grid container spacing={2} >
+            <CardGrid cards={cardDeck} />
           </Grid>
         );
       default:
@@ -45,7 +45,7 @@ const DemoPageContent = ({ pathname }: { pathname: string }) => {
 
 const DashboardLayoutBasic: React.FC<{ window?: () => Window }> = (props) => {
   const { window } = props;
-  const router = useDemoRouter('/');
+  const router = useRouter('/');
   const demoWindow = window ? window() : undefined;
 
   return (
@@ -60,7 +60,7 @@ const DashboardLayoutBasic: React.FC<{ window?: () => Window }> = (props) => {
       }}
     >
       <DashboardLayout>
-        <DemoPageContent pathname={router.pathname} />
+        <PageContent pathname={router.pathname} />
       </DashboardLayout>
     </AppProvider>
   );
