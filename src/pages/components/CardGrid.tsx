@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Button, Box, IconButton } from '@mui/material';
+import CenteredLoader from '../../components/Loader';
+import { Delete as DeleteIcon, Add as AddIcon } from '@mui/icons-material';
+
 
 // Define the props type for the CardGrid component
 const CardGrid: React.FC<{ cards: { name: string; imageUrl: string; rank: number }[] }> = ({ cards }) => {
@@ -25,6 +28,7 @@ const CardGrid: React.FC<{ cards: { name: string; imageUrl: string; rank: number
 
   // State to manage counts of each card
   const [cardCounts, setCardCounts] = useState(initialCards);
+  const [loading, setLoading] = useState(true)
 
   // Handle click on the add button to increase count
   const handleAddClick = (cardName: string) => {
@@ -53,55 +57,70 @@ const CardGrid: React.FC<{ cards: { name: string; imageUrl: string; rank: number
     setCardCounts(initialCards);
   };
 
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000); // Simulate a 1-second loading delay
+  }, []);
+
   return (
-    <div>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleReset}
-        style={{ marginBottom: 15 }}
-      >
-        Reset Counts
-      </Button>
-      <Grid container spacing={2} style={{ marginTop: 15, justifyContent: 'center' }}>
-        {cardCounts
-          .sort((a, b) => a.rank - b.rank) // Sort the unique cards by rank
-          .map((card) => (
-            <Grid item xs={2} key={card.name}>
-              <Card>
-                <CardMedia component="img" image={card.imageUrl} alt={card.name} />
-                <CardContent>
-                  <Typography variant="body2" color="textSecondary">
-                    {`Number of cards: ${card.count}`} {/* Display the count of cards */}
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="success"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent unintended events
-                      handleAddClick(card.name);
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      style={{ height: 'auto', width: '100%' }}
+    >
+      {loading ? (
+        <CenteredLoader message="Hang Tight!" />
+      ) : (
+        <Box position="relative" minHeight="100vh">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleReset}
+            style={{ marginBottom: 15 }}
+          >
+            Reset Counts
+          </Button>
+          <Grid container spacing={2} style={{ marginTop: 15, justifyContent: 'center' }}>
+            {cardCounts
+              .sort((a, b) => a.rank - b.rank)
+              .map((card) => (
+                <Grid item xs={2} key={card.name}>
+                  <Card
+                    style={{
+                      opacity: card.count === 0 ? 0.5 : 1,
+                      pointerEvents: card.count === 0 ? 'none' : 'auto',
                     }}
-                    style={{ marginTop: 10, marginRight: 10 }}
                   >
-                    A
-                  </Button>
-                  <Button
-                    variant="contained"
-                    color="error"
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent unintended events
-                      handleRemoveClick(card.name);
-                    }}
-                    style={{ marginTop: 10 }}
-                  >
-                    R
-                  </Button>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-      </Grid>
-    </div>
+                    <CardMedia component="img" image={card.imageUrl} alt={card.name} />
+                    <CardContent>
+                      <Typography variant="body2" color="textSecondary">
+                        {`Number of cards: ${card.count}`}
+                      </Typography>
+                      <IconButton aria-label="delete" size="small" color="success" onClick={(e) => {
+                        e.stopPropagation();
+                        handleAddClick(card.name);
+                      }}
+                        style={{ marginTop: 10, marginRight: 10 }}>
+                        <AddIcon fontSize="inherit" />
+                      </IconButton>
+                      <IconButton aria-label="delete" size="small" color="error" onClick={(e) => {
+                        e.stopPropagation();
+                        handleRemoveClick(card.name);
+                      }} style={{ marginTop: 10 }} >
+                        <DeleteIcon fontSize="inherit" />
+                      </IconButton>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+          </Grid>
+        </Box>
+      )}
+    </Box>
+
   );
 };
 

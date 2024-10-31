@@ -6,7 +6,7 @@ import { NAVIGATION, demoTheme, useDemoRouter } from '../config/config';
 import CardGrid from './components/CardGrid';
 import PageHeader from './components/PageHeader';
 import myCards from './components/CardDeck'; // Adjust the path as necessary
-import { Box, Typography } from '@mui/material';
+import { Box, createTheme, Typography } from '@mui/material';
 
 const DemoPageContent = ({ pathname }: { pathname: string }) => {
   // Determine which content to display based on the pathname

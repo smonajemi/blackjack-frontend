@@ -1,3 +1,17 @@
+import twoOfHearts from '../../images/playing_cards/2_of_hearts.png';
+import threeOfHearts from '../../images/playing_cards/3_of_hearts.png';
+import fourOfHearts from '../../images/playing_cards/4_of_hearts.png';
+import fiveOfHearts from '../../images/playing_cards/5_of_hearts.png';
+import sixOfHearts from '../../images/playing_cards/6_of_hearts.png';
+import sevenOfHearts from '../../images/playing_cards/7_of_hearts.png';
+import eightOfHearts from '../../images/playing_cards/8_of_hearts.png';
+import nineOfHearts from '../../images/playing_cards/9_of_hearts.png';
+import tenOfHearts from '../../images/playing_cards/10_of_hearts.png';
+import aceOfHearts from '../../images/playing_cards/ace_of_hearts.png';
+import jackOfHearts from '../../images/playing_cards/jack_of_hearts.png';
+import queenOfHearts from '../../images/playing_cards/queen_of_hearts.png';
+import kingOfHearts from '../../images/playing_cards/king_of_hearts.png';
+
 import twoOfClubs from '../../images/playing_cards/2_of_clubs.png';
 import threeOfClubs from '../../images/playing_cards/3_of_clubs.png';
 import fourOfClubs from '../../images/playing_cards/4_of_clubs.png';
@@ -26,20 +40,6 @@ import jackOfDiamonds from '../../images/playing_cards/jack_of_diamonds.png';
 import queenOfDiamonds from '../../images/playing_cards/queen_of_diamonds.png';
 import kingOfDiamonds from '../../images/playing_cards/king_of_diamonds.png';
 
-import twoOfHearts from '../../images/playing_cards/2_of_hearts.png';
-import threeOfHearts from '../../images/playing_cards/3_of_hearts.png';
-import fourOfHearts from '../../images/playing_cards/4_of_hearts.png';
-import fiveOfHearts from '../../images/playing_cards/5_of_hearts.png';
-import sixOfHearts from '../../images/playing_cards/6_of_hearts.png';
-import sevenOfHearts from '../../images/playing_cards/7_of_hearts.png';
-import eightOfHearts from '../../images/playing_cards/8_of_hearts.png';
-import nineOfHearts from '../../images/playing_cards/9_of_hearts.png';
-import tenOfHearts from '../../images/playing_cards/10_of_hearts.png';
-import aceOfHearts from '../../images/playing_cards/ace_of_hearts.png';
-import jackOfHearts from '../../images/playing_cards/jack_of_hearts.png';
-import queenOfHearts from '../../images/playing_cards/queen_of_hearts.png';
-import kingOfHearts from '../../images/playing_cards/king_of_hearts.png';
-
 import twoOfSpades from '../../images/playing_cards/2_of_spades.png';
 import threeOfSpades from '../../images/playing_cards/3_of_spades.png';
 import fourOfSpades from '../../images/playing_cards/4_of_spades.png';
@@ -54,12 +54,38 @@ import jackOfSpades from '../../images/playing_cards/jack_of_spades.png';
 import queenOfSpades from '../../images/playing_cards/queen_of_spades.png';
 import kingOfSpades from '../../images/playing_cards/king_of_spades.png';
 
-import kingClub from '../../images/kingHeart.png'
-import queenClub from '../../images/queenHeart.png'
-import jackClub from '../../images/jackDiamond.png'
-import aceClub from '../../images/aceHeart.png'
+import aceHeart from '../../images/aceHeart.png';
+import twoHeart from '../../images/twoHeart.png';
+import threeHeart from '../../images/threeHeart.png';
+import fourHeart from '../../images/fourHeart.png';
+import fiveHeart from '../../images/fiveHeart.png';
+import sixHeart from '../../images/sixHeart.png';
+import sevenHeart from '../../images/sevenHeart.png';
+import eightHeart from '../../images/eightHeart.png';
+import nineHeart from '../../images/nineHeart.png';
+import tenHeart from '../../images/tenHeart.png';
+import jackHeart from '../../images/jackHeart.png';
+import queenHeart from '../../images/queenHeart.png';
+import kingHeart from '../../images/kingHeart.png';
+
 
 const myCards = [
+
+    // Hearts
+    { name: '2 of Hearts', imageUrl: twoHeart, rank: 2 },
+    { name: '3 of Hearts', imageUrl: threeHeart, rank: 3 },
+    { name: '4 of Hearts', imageUrl: fourHeart, rank: 4 },
+    { name: '5 of Hearts', imageUrl: fiveHeart, rank: 5 },
+    { name: '6 of Hearts', imageUrl: sixHeart, rank: 6 },
+    { name: '7 of Hearts', imageUrl: sevenHeart, rank: 7 },
+    { name: '8 of Hearts', imageUrl: eightHeart, rank: 8 },
+    { name: '9 of Hearts', imageUrl: nineHeart, rank: 9 },
+    { name: '10 of Hearts', imageUrl: tenHeart, rank: 10 },
+    { name: 'Ace of Hearts', imageUrl: aceHeart, rank: 14 },
+    { name: 'Jack of Hearts', imageUrl: jackHeart, rank: 11 },
+    { name: 'Queen of Hearts', imageUrl: queenHeart, rank: 12 },
+    { name: 'King of Hearts', imageUrl: kingHeart, rank: 13 },
+
     // Clubs
     { name: '2 of Clubs', imageUrl: twoOfClubs, rank: 2 },
     { name: '3 of Clubs', imageUrl: threeOfClubs, rank: 3 },
@@ -70,10 +96,10 @@ const myCards = [
     { name: '8 of Clubs', imageUrl: eightOfClubs, rank: 8 },
     { name: '9 of Clubs', imageUrl: nineOfClubs, rank: 9 },
     { name: '10 of Clubs', imageUrl: tenOfClubs, rank: 10 },
-    { name: 'Ace of Clubs', imageUrl: aceClub, rank: 14 },
-    { name: 'Jack of Clubs', imageUrl: jackClub, rank: 11 },
-    { name: 'Queen of Clubs', imageUrl: queenClub, rank: 12 },
-    { name: 'King of Clubs', imageUrl: kingClub, rank: 13 },
+    { name: 'Ace of Clubs', imageUrl: aceOfClubs, rank: 14 },
+    { name: 'Jack of Clubs', imageUrl: jackOfClubs, rank: 11 },
+    { name: 'Queen of Clubs', imageUrl: queenOfClubs, rank: 12 },
+    { name: 'King of Clubs', imageUrl: kingOfClubs, rank: 13 },
 
     // Diamonds
     { name: '2 of Diamonds', imageUrl: twoOfDiamonds, rank: 2 },
@@ -89,21 +115,6 @@ const myCards = [
     { name: 'Jack of Diamonds', imageUrl: jackOfDiamonds, rank: 11 },
     { name: 'Queen of Diamonds', imageUrl: queenOfDiamonds, rank: 12 },
     { name: 'King of Diamonds', imageUrl: kingOfDiamonds, rank: 13 },
-
-    // Hearts
-    { name: '2 of Hearts', imageUrl: twoOfHearts, rank: 2 },
-    { name: '3 of Hearts', imageUrl: threeOfHearts, rank: 3 },
-    { name: '4 of Hearts', imageUrl: fourOfHearts, rank: 4 },
-    { name: '5 of Hearts', imageUrl: fiveOfHearts, rank: 5 },
-    { name: '6 of Hearts', imageUrl: sixOfHearts, rank: 6 },
-    { name: '7 of Hearts', imageUrl: sevenOfHearts, rank: 7 },
-    { name: '8 of Hearts', imageUrl: eightOfHearts, rank: 8 },
-    { name: '9 of Hearts', imageUrl: nineOfHearts, rank: 9 },
-    { name: '10 of Hearts', imageUrl: tenOfHearts, rank: 10 },
-    { name: 'Ace of Hearts', imageUrl: aceOfHearts, rank: 14 },
-    { name: 'Jack of Hearts', imageUrl: jackOfHearts, rank: 11 },
-    { name: 'Queen of Hearts', imageUrl: queenOfHearts, rank: 12 },
-    { name: 'King of Hearts', imageUrl: kingOfHearts, rank: 13 },
 
     // Spades
     { name: '2 of Spades', imageUrl: twoOfSpades, rank: 2 },
