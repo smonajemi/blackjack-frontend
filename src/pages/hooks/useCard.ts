@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Define your types if not already defined
 interface CardData {
   rank: number;
   name: string;
@@ -28,6 +27,9 @@ const useCard = (cards: CardData[], playingDeck: number) => {
   const [loading, setLoading] = useState(true);
   const [deckCount, setDeckCount] = useState<number>(playingDeck);
   const [totalCardsRemaining, setTotalCardsRemaining] = useState<number>(deckCount * 52);
+  const [totalCardsPlayed, setTotalCardsPlayed] = useState<number>(0);
+  const [numberOfTens, setNumberOfTens] = useState<number>(0);
+
   const initialCards: CardCount[] = [];
 
   for (const rank in groupedCards) {
@@ -51,6 +53,8 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     );
   }, [deckCount]);
 
+  const isTenValueCard = (rank: number) => [10, 11, 12, 13].includes(rank); // 10, Jack, Queen, King
+
   const handleAddClick = (cardName: string) => {
     setCardCounts(prevCounts => {
       const updatedCounts = prevCounts.map(card =>
@@ -60,6 +64,14 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       );
       const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
       setTotalCardsRemaining(newTotal);
+
+      // Count if a 10-value card was played
+      const tensCount = updatedCounts.reduce(
+        (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
+        0
+      );
+      setNumberOfTens(tensCount);
+
       return updatedCounts;
     });
   };
@@ -73,6 +85,14 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       );
       const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
       setTotalCardsRemaining(newTotal);
+
+      // Update count of 10-value cards
+      const tensCount = updatedCounts.reduce(
+        (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
+        0
+      );
+      setNumberOfTens(tensCount);
+
       return updatedCounts;
     });
   };
@@ -81,6 +101,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setDeckCount(playingDeck);
     setCardCounts(initialCards);
     setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
+    setNumberOfTens(0); // Reset 10-value card count
   };
 
   useEffect(() => {
@@ -97,6 +118,8 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     handleRemoveClick,
     handleReset,
     setDeckCount,
+    numberOfTens,
+    totalCardsPlayed, // This can be updated as needed
   };
 };
 

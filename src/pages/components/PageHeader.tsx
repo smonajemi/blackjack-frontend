@@ -23,6 +23,7 @@ interface PageHeaderProps {
   gameRoundNumber: number;          // Current game round number
   highScore: number;                // Player's high score
   riskAssessment: 'Low' | 'Medium' | 'High'; // Assessment of risk level
+  numberOfTens: number;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -45,6 +46,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   gameRoundNumber,
   highScore,
   riskAssessment,
+  numberOfTens,
 }) => {
   const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
     backgroundColor: theme.palette.action.hover,
@@ -60,23 +62,25 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   const stats = [
     { label: 'Decks', value: deckCount },
     { label: 'Cards Remaining', value: cardsRemaining },
-    { label: 'Chances to Win', value: `${chancesToWin}%` },
-    { label: 'Total Wins', value: totalWins },
-    { label: 'Total Losses', value: totalLosses },
-    { label: 'Pushes', value: pushes },
-    { label: 'Blackjack Count', value: blackjackCount },
-    { label: "Dealer's Up Card", value: dealersUpCard },
-    { label: 'Player Hand Value', value: playerHandValue },
-    { label: 'Dealer Hand Value', value: dealerHandValue },
-    { label: 'Cards Played', value: cardsPlayed },
-    { label: 'Number of Splits', value: numberOfSplits },
-    { label: 'Number of Double Downs', value: numberOfDoubleDowns },
-    { label: 'Winning Percentage', value: `${winningPercentage}%` },
-    { label: 'Last Hand Result', value: lastHandResult },
-    // { label: 'Cards Remaining in Decks', value: cardsRemainingInDecks },
-    { label: 'Game Round Number', value: gameRoundNumber },
-    { label: 'High Score', value: `$${highScore}` },
-    { label: 'Risk Assessment', value: riskAssessment },
+    // { label: 'Chances to Win', value: `${chancesToWin}%` },
+    // { label: 'Total Wins', value: totalWins },
+    // { label: 'Total Losses', value: totalLosses },
+    // { label: 'Pushes', value: pushes },
+    // { label: 'Blackjack Count', value: blackjackCount },
+    // { label: "Dealer's Up Card", value: dealersUpCard },
+    // { label: 'Player Hand Value', value: playerHandValue },
+    // { label: 'Dealer Hand Value', value: dealerHandValue },
+    // { label: 'Cards Played', value: cardsPlayed },
+    // { label: 'Number of Splits', value: numberOfSplits },
+    // { label: 'Number of Double Downs', value: numberOfDoubleDowns },
+    // { label: 'Winning Percentage', value: `${winningPercentage}%` },
+    // { label: 'Last Hand Result', value: lastHandResult },
+    // // { label: 'Cards Remaining in Decks', value: cardsRemainingInDecks },
+    // { label: 'Game Round Number', value: gameRoundNumber },
+    // { label: 'High Score', value: `$${highScore}` },
+    // { label: 'Risk Assessment', value: riskAssessment },
+    { label: 'Tens Played', value: numberOfTens },
+    
   ];
 
   return (

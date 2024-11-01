@@ -54,19 +54,66 @@ import jackOfSpades from '../../images/playing_cards/jack_of_spades.png';
 import queenOfSpades from '../../images/playing_cards/queen_of_spades.png';
 import kingOfSpades from '../../images/playing_cards/king_of_spades.png';
 
-import aceHeart from '../../images/aceHeart.png';
-import twoHeart from '../../images/twoHeart.png';
-import threeHeart from '../../images/threeHeart.png';
-import fourHeart from '../../images/fourHeart.png';
-import fiveHeart from '../../images/fiveHeart.png';
-import sixHeart from '../../images/sixHeart.png';
-import sevenHeart from '../../images/sevenHeart.png';
-import eightHeart from '../../images/eightHeart.png';
-import nineHeart from '../../images/nineHeart.png';
-import tenHeart from '../../images/tenHeart.png';
-import jackHeart from '../../images/jackHeart.png';
-import queenHeart from '../../images/queenHeart.png';
-import kingHeart from '../../images/kingHeart.png';
+// Hearts
+import aceHeart from '../../images/classic_playing_cards/aceHeart.png';
+import twoHeart from '../../images/classic_playing_cards/twoHeart.png';
+import threeHeart from '../../images/classic_playing_cards/threeHeart.png';
+import fourHeart from '../../images/classic_playing_cards/fourHeart.png';
+import fiveHeart from '../../images/classic_playing_cards/fiveHeart.png';
+import sixHeart from '../../images/classic_playing_cards/sixHeart.png';
+import sevenHeart from '../../images/classic_playing_cards/sevenHeart.png';
+import eightHeart from '../../images/classic_playing_cards/eightHeart.png';
+import nineHeart from '../../images/classic_playing_cards/nineHeart.png';
+import tenHeart from '../../images/classic_playing_cards/tenHeart.png';
+import jackHeart from '../../images/classic_playing_cards/jackHeart.png';
+import queenHeart from '../../images/classic_playing_cards/queenHeart.png';
+import kingHeart from '../../images/classic_playing_cards/kingHeart.png';
+
+// Clubs
+// import aceClub from '../../images/classic_playing_cards/aceClub.png';
+// import twoClub from '../../images/classic_playing_cards/twoClub.png';
+// import threeClub from '../../images/classic_playing_cards/threeClub.png';
+// import fourClub from '../../images/classic_playing_cards/fourClub.png';
+// import fiveClub from '../../images/classic_playing_cards/fiveClub.png';
+// import sixClub from '../../images/classic_playing_cards/sixClub.png';
+// import sevenClub from '../../images/classic_playing_cards/sevenClub.png';
+// import eightClub from '../../images/classic_playing_cards/eightClub.png';
+// import nineClub from '../../images/classic_playing_cards/nineClub.png';
+// import tenClub from '../../images/classic_playing_cards/tenClub.png';
+// import jackClub from '../../images/classic_playing_cards/jackClub.png';
+// import queenClub from '../../images/classic_playing_cards/queenClub.png';
+// import kingClub from '../../images/classic_playing_cards/kingClub.png';
+
+// // Diamonds
+// import aceDiamond from '../../images/classic_playing_cards/aceDiamond.png';
+// import twoDiamond from '../../images/classic_playing_cards/twoDiamond.png';
+// import threeDiamond from '../../images/classic_playing_cards/threeDiamond.png';
+// import fourDiamond from '../../images/classic_playing_cards/fourDiamond.png';
+// import fiveDiamond from '../../images/classic_playing_cards/fiveDiamond.png';
+// import sixDiamond from '../../images/classic_playing_cards/sixDiamond.png';
+// import sevenDiamond from '../../images/classic_playing_cards/sevenDiamond.png';
+// import eightDiamond from '../../images/classic_playing_cards/eightDiamond.png';
+// import nineDiamond from '../../images/classic_playing_cards/nineDiamond.png';
+// import tenDiamond from '../../images/classic_playing_cards/tenDiamond.png';
+// import jackDiamond from '../../images/classic_playing_cards/jackDiamond.png';
+// import queenDiamond from '../../images/classic_playing_cards/queenDiamond.png';
+// import kingDiamond from '../../images/classic_playing_cards/kingDiamond.png';
+
+// // Spades
+// import aceSpade from '../../images/classic_playing_cards/aceSpade.png';
+// import twoSpade from '../../images/classic_playing_cards/twoSpade.png';
+// import threeSpade from '../../images/classic_playing_cards/threeSpade.png';
+// import fourSpade from '../../images/classic_playing_cards/fourSpade.png';
+// import fiveSpade from '../../images/classic_playing_cards/fiveSpade.png';
+// import sixSpade from '../../images/classic_playing_cards/sixSpade.png';
+// import sevenSpade from '../../images/classic_playing_cards/sevenSpade.png';
+// import eightSpade from '../../images/classic_playing_cards/eightSpade.png';
+// import nineSpade from '../../images/classic_playing_cards/nineSpade.png';
+// import tenSpade from '../../images/classic_playing_cards/tenSpade.png';
+// import jackSpade from '../../images/classic_playing_cards/jackSpade.png';
+// import queenSpade from '../../images/classic_playing_cards/queenSpade.png';
+// import kingSpade from '../../images/classic_playing_cards/kingSpade.png';
+
 
 
 const myCards = [
@@ -81,7 +128,7 @@ const myCards = [
     { name: '8 of Hearts', imageUrl: eightHeart, rank: 8 },
     { name: '9 of Hearts', imageUrl: nineHeart, rank: 9 },
     { name: '10 of Hearts', imageUrl: tenHeart, rank: 10 },
-    { name: 'Ace of Hearts', imageUrl: aceHeart, rank: 14 },
+    { name: 'Ace of Hearts', imageUrl: aceHeart, rank: 1 },
     { name: 'Jack of Hearts', imageUrl: jackHeart, rank: 11 },
     { name: 'Queen of Hearts', imageUrl: queenHeart, rank: 12 },
     { name: 'King of Hearts', imageUrl: kingHeart, rank: 13 },
@@ -96,7 +143,7 @@ const myCards = [
     { name: '8 of Clubs', imageUrl: eightOfClubs, rank: 8 },
     { name: '9 of Clubs', imageUrl: nineOfClubs, rank: 9 },
     { name: '10 of Clubs', imageUrl: tenOfClubs, rank: 10 },
-    { name: 'Ace of Clubs', imageUrl: aceOfClubs, rank: 14 },
+    { name: 'Ace of Clubs', imageUrl: aceOfClubs, rank: 1 },
     { name: 'Jack of Clubs', imageUrl: jackOfClubs, rank: 11 },
     { name: 'Queen of Clubs', imageUrl: queenOfClubs, rank: 12 },
     { name: 'King of Clubs', imageUrl: kingOfClubs, rank: 13 },
@@ -111,7 +158,7 @@ const myCards = [
     { name: '8 of Diamonds', imageUrl: eightOfDiamonds, rank: 8 },
     { name: '9 of Diamonds', imageUrl: nineOfDiamonds, rank: 9 },
     { name: '10 of Diamonds', imageUrl: tenOfDiamonds, rank: 10 },
-    { name: 'Ace of Diamonds', imageUrl: aceOfDiamonds, rank: 14 },
+    { name: 'Ace of Diamonds', imageUrl: aceOfDiamonds, rank: 1 },
     { name: 'Jack of Diamonds', imageUrl: jackOfDiamonds, rank: 11 },
     { name: 'Queen of Diamonds', imageUrl: queenOfDiamonds, rank: 12 },
     { name: 'King of Diamonds', imageUrl: kingOfDiamonds, rank: 13 },
@@ -126,7 +173,7 @@ const myCards = [
     { name: '8 of Spades', imageUrl: eightOfSpades, rank: 8 },
     { name: '9 of Spades', imageUrl: nineOfSpades, rank: 9 },
     { name: '10 of Spades', imageUrl: tenOfSpades, rank: 10 },
-    { name: 'Ace of Spades', imageUrl: aceOfSpades, rank: 14 },
+    { name: 'Ace of Spades', imageUrl: aceOfSpades, rank: 1 },
     { name: 'Jack of Spades', imageUrl: jackOfSpades, rank: 11 },
     { name: 'Queen of Spades', imageUrl: queenOfSpades, rank: 12 },
     { name: 'King of Spades', imageUrl: kingOfSpades, rank: 13 },
