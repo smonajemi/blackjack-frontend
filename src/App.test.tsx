@@ -1,9 +1,24 @@
+// App.test.tsx
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
+import theme from '../src/theme/styles';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+
+describe('App Component', () => {
+  test('renders without crashing and contains Routes', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </ThemeProvider>
+    );
+
+    // Check if the theme and routing elements are rendered
+    expect(screen.getByRole('application')).toBeInTheDocument();
+  });
 });

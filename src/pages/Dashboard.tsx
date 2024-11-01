@@ -1,9 +1,10 @@
-// DashboardLayoutBasic.tsx
 import React, { useState } from 'react';
-import { AppProvider, DashboardLayout } from '@toolpad/core';
+// import { AppProvider, DashboardLayout } from '@toolpad/core';
+import { AppProvider } from '@toolpad/core';
+import { DashboardLayout } from '@toolpad/core/DashboardLayout';
+
 import { NAVIGATION, demoTheme, useRouter } from '../config/config';
 import PageContent from './components/PageContent';
-import logo from '../images/logo.png'
 
 const Dashboard: React.FC = () => {
   const router = useRouter('/');

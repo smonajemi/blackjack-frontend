@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@toolpad/*": ["node_modules/@toolpad/*"]
+    },
     "target": "esnext",
     "lib": [
       "dom",

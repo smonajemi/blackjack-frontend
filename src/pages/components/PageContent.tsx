@@ -18,7 +18,7 @@ const PageContent: React.FC<PageContentProps> = ({ pathname, playingDeck, setPla
         return <Typography variant="h4">Hello Dashboard</Typography>;
       case '/blackjack':
         return (
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             {cardDeck.length > 0 ? (
               <CardGrid playingDeck={playingDeck} cards={cardDeck} />
             ) : (
