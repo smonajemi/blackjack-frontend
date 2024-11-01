@@ -17,7 +17,7 @@ const Dashboard: React.FC = () => {
       theme={demoTheme}
       branding={{
         logo: <img src="" alt="" />,
-        title: 'BJ',
+        title: 'JP21',
       }}
     >
       <DashboardLayout>

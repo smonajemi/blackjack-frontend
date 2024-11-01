@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Typography, Box, List, ListItem } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import useGrid from '../hooks/useGrid';
 
 // Update the props to accept all necessary statistics
 interface PageHeaderProps {
@@ -50,15 +51,8 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   numberOfTens,
   numberOfAces
 }) => {
-  const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
-    backgroundColor: theme.palette.action.hover,
-    borderRadius: theme.shape.borderRadius,
-    height,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: theme.spacing(2),
-  }));
+  const Skeleton = useGrid();
+
 
   // Create an array of stats to be displayed
   const stats = [

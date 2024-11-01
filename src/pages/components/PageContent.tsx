@@ -3,6 +3,7 @@ import { Box, Typography, Grid } from '@mui/material';
 import CardGrid from './CardGrid'; // Adjust the path as necessary
 import cardDeck from './CardDeck'; // Adjust the path as necessary
 import { PageContainer } from '@toolpad/core';
+import DashboardGrid from './DashboardGrid';
 
 interface PageContentProps {
   pathname: string;
@@ -15,7 +16,7 @@ const PageContent: React.FC<PageContentProps> = ({ pathname, playingDeck, setPla
   const renderPageContent = () => {
     switch (pathname) {
       case '/dashboard':
-        return <Typography variant="h4">Hello Dashboard</Typography>;
+        return <Grid container spacing={0}><DashboardGrid /></Grid>
       case '/blackjack':
         return (
           <Grid container spacing={0}>

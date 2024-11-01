@@ -30,7 +30,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
   const [totalCardsRemaining, setTotalCardsRemaining] = useLocalStorage<number>('totalCardsRemaining', deckCount * 52);
   const [totalCardsPlayed, setTotalCardsPlayed] = useLocalStorage<number>('totalCardsPlayed', 0);
   const [numberOfTens, setNumberOfTens] = useLocalStorage<number>('numberOfTens', 0);
-  const [numberOfAces, setNumberOfAces] = useLocalStorage<number>('numberOfAces', 0); // Track aces
+  const [numberOfAces, setNumberOfAces] = useLocalStorage<number>('numberOfAces', 0);
 
   const initialCards: CardCount[] = [];
 
@@ -117,7 +117,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setCardCounts(initialCards);
     setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
     setNumberOfTens(0);
-    setNumberOfAces(0); // Reset Ace count
+    setNumberOfAces(0); 
   };
 
   useEffect(() => {
@@ -136,8 +136,8 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setDeckCount,
     numberOfTens,
     totalCardsPlayed,
-    numberOfAces, // Track and return the count of aces used
-  };
+    numberOfAces, 
+  } as const;
 };
 
 export default useCard;
