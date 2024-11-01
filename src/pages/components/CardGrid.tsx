@@ -52,9 +52,10 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
                       <CardMedia component="img" image={card.imageUrl} alt={card.name} />
                     )}
                     <Typography variant="caption" color="textSecondary">
-                      {`Max allowed: ${card.count}`}
+                      {`Max: ${card.originalCount * playingDeck} / ${card.count} = ${(card.originalCount * playingDeck) - card.count}`}
+
                     </Typography>
-                    {/* <Box>
+                    <Box>
                       <IconButton aria-label="add" size="small" color="success" onClick={(e) => {
                         e.stopPropagation();
                         handleAddClick(card.name);
@@ -69,7 +70,7 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
                       >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
-                    </Box> */}
+                    </Box>
                   </Card>
                 </Grid>
               ))}
