@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useLocalStorage from 'src/components/hooks/useLocalStorage';
 
 interface CardData {
   rank: number;
@@ -25,11 +26,11 @@ const useCard = (cards: CardData[], playingDeck: number) => {
   }
 
   const [loading, setLoading] = useState(true);
-  const [deckCount, setDeckCount] = useState<number>(playingDeck);
-  const [totalCardsRemaining, setTotalCardsRemaining] = useState<number>(deckCount * 52);
-  const [totalCardsPlayed, setTotalCardsPlayed] = useState<number>(0);
-  const [numberOfTens, setNumberOfTens] = useState<number>(0);
-  const [numberOfAces, setNumberOfAces] = useState<number>(0); // Track aces
+  const [deckCount, setDeckCount] = useLocalStorage<number>('deckCount', playingDeck);
+  const [totalCardsRemaining, setTotalCardsRemaining] = useLocalStorage<number>('totalCardsRemaining', deckCount * 52);
+  const [totalCardsPlayed, setTotalCardsPlayed] = useLocalStorage<number>('totalCardsPlayed', 0);
+  const [numberOfTens, setNumberOfTens] = useLocalStorage<number>('numberOfTens', 0);
+  const [numberOfAces, setNumberOfAces] = useLocalStorage<number>('numberOfAces', 0); // Track aces
 
   const initialCards: CardCount[] = [];
 
@@ -43,7 +44,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       imageUrl: cardArray[0].imageUrl,
     });
   }
-  const [cardCounts, setCardCounts] = useState<CardCount[]>(initialCards);
+  const [cardCounts, setCardCounts] = useLocalStorage<CardCount[]>('cardCounts', initialCards);
 
   useEffect(() => {
     setCardCounts(prevCounts =>
