@@ -29,6 +29,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
   const [totalCardsRemaining, setTotalCardsRemaining] = useState<number>(deckCount * 52);
   const [totalCardsPlayed, setTotalCardsPlayed] = useState<number>(0);
   const [numberOfTens, setNumberOfTens] = useState<number>(0);
+  const [numberOfAces, setNumberOfAces] = useState<number>(0); // Track aces
 
   const initialCards: CardCount[] = [];
 
@@ -53,6 +54,7 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     );
   }, [deckCount]);
 
+  const isAceCard = (rank: number) => rank === 1; // Check if the card is an Ace
   const isTenValueCard = (rank: number) => [10, 11, 12, 13].includes(rank); // 10, Jack, Queen, King
 
   const handleAddClick = (cardName: string) => {
@@ -65,12 +67,18 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
       setTotalCardsRemaining(newTotal);
 
-      // Count if a 10-value card was played
+      // Count if a 10-value card or an Ace was played
       const tensCount = updatedCounts.reduce(
         (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
         0
       );
       setNumberOfTens(tensCount);
+
+      const acesCount = updatedCounts.reduce(
+        (count, card) => count + (isAceCard(card.rank) ? card.count : 0),
+        0
+      );
+      setNumberOfAces(acesCount);
 
       return updatedCounts;
     });
@@ -86,12 +94,18 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
       setTotalCardsRemaining(newTotal);
 
-      // Update count of 10-value cards
+      // Update count of 10-value cards and Aces
       const tensCount = updatedCounts.reduce(
         (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
         0
       );
       setNumberOfTens(tensCount);
+
+      const acesCount = updatedCounts.reduce(
+        (count, card) => count + (isAceCard(card.rank) ? card.count : 0),
+        0
+      );
+      setNumberOfAces(acesCount);
 
       return updatedCounts;
     });
@@ -101,7 +115,8 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setDeckCount(playingDeck);
     setCardCounts(initialCards);
     setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
-    setNumberOfTens(0); // Reset 10-value card count
+    setNumberOfTens(0);
+    setNumberOfAces(0); // Reset Ace count
   };
 
   useEffect(() => {
@@ -119,8 +134,10 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     handleReset,
     setDeckCount,
     numberOfTens,
-    totalCardsPlayed, // This can be updated as needed
+    totalCardsPlayed,
+    numberOfAces, // Track and return the count of aces used
   };
 };
 
 export default useCard;
+

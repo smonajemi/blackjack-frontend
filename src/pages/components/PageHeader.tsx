@@ -24,6 +24,7 @@ interface PageHeaderProps {
   highScore: number;                // Player's high score
   riskAssessment: 'Low' | 'Medium' | 'High'; // Assessment of risk level
   numberOfTens: number;
+  numberOfAces: number;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({
@@ -47,6 +48,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   highScore,
   riskAssessment,
   numberOfTens,
+  numberOfAces
 }) => {
   const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
     backgroundColor: theme.palette.action.hover,
@@ -80,7 +82,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
     // { label: 'High Score', value: `$${highScore}` },
     // { label: 'Risk Assessment', value: riskAssessment },
     { label: 'Tens Played', value: numberOfTens },
-    
+    { label: 'Aces Played', value: numberOfAces },
   ];
 
   return (

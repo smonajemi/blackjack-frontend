@@ -16,7 +16,8 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
     handleAddClick,
     handleRemoveClick,
     handleReset,
-    numberOfTens
+    numberOfTens,
+    numberOfAces
   } = useCard(cards, playingDeck);
 
   return (
@@ -37,7 +38,7 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
             <ArrowRightOutlined></ArrowRightOutlined>
           </IconButton>
      
-          <PageHeader numberOfTens={numberOfTens} deckCount={deckCount} cardsRemaining={totalCardsRemaining} chancesToWin={0} totalWins={0} totalLosses={0} pushes={0} blackjackCount={0} dealersUpCard={0} playerHandValue={0} dealerHandValue={0} cardsPlayed={0} numberOfSplits={0} numberOfDoubleDowns={0} winningPercentage={0} lastHandResult={'Win'} gameRoundNumber={0} highScore={0} riskAssessment={'Low'} />
+          <PageHeader numberOfTens={numberOfTens} numberOfAces={numberOfAces} deckCount={deckCount} cardsRemaining={totalCardsRemaining} chancesToWin={0} totalWins={0} totalLosses={0} pushes={0} blackjackCount={0} dealersUpCard={0} playerHandValue={0} dealerHandValue={0} cardsPlayed={0} numberOfSplits={0} numberOfDoubleDowns={0} winningPercentage={0} lastHandResult={'Win'} gameRoundNumber={0} highScore={0} riskAssessment={'Low'} />
           
           <Grid container spacing={2} style={{ marginTop: 15, justifyContent: 'center' }}>
             {cardCounts
@@ -53,7 +54,7 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
                     <Typography variant="caption" color="textSecondary">
                       {`Max allowed: ${card.count}`}
                     </Typography>
-                    <Box>
+                    {/* <Box>
                       <IconButton aria-label="add" size="small" color="success" onClick={(e) => {
                         e.stopPropagation();
                         handleAddClick(card.name);
@@ -68,7 +69,7 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
                       >
                         <DeleteIcon fontSize="inherit" />
                       </IconButton>
-                    </Box>
+                    </Box> */}
                   </Card>
                 </Grid>
               ))}
