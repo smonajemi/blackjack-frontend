@@ -39,7 +39,7 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
               .sort((a, b) => a.rank - b.rank)
               .map(card => (
                 <Grid item xs={4} sm={2} md={2} lg={1.3} xl={1.3} key={card.name}>
-                  <Card style={{ opacity: card.count === 0 ? 0.5 : 1}} >
+                  <Card style={{ opacity: card.count === 0 ? 0.5 : 1, borderRadius: 15}} >
                     {loading ? (
                       <CustomLoader />
                     ) : (
