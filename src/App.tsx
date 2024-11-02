@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import routes from './config/routes';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import theme from '../src/theme/styles';
+import theme from './theme/theme';
 
 const App: React.FC = () => {
   return (

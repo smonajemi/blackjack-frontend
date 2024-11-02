@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material';
-import theme from '../src/theme/styles';
+import theme from './theme/theme';
 import App from './App';
 
 

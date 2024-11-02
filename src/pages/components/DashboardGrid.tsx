@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import useGrid from '../hooks/useGrid';
 
 const DashboardGrid: React.FC = React.memo(() => {
-  const Skeleton = useGrid();
+  const { Skeleton } = useGrid();
 
   return (
     <Box display="flex" justifyContent="center" alignItems="center" style={{ height: 'auto', width: '100%' }}>

@@ -1,23 +1,11 @@
 import { useEffect, useState } from 'react';
 import useLocalStorage from 'src/components/hooks/useLocalStorage';
-
-interface CardData {
-  rank: number;
-  name: string;
-  imageUrl: string;
-}
-
-interface CardCount {
-  rank: number;
-  count: number;
-  originalCount: number;
-  name: string;
-  imageUrl: string;
-}
+import { CardCount, CardData } from '../../types/card.types';
 
 const useCard = (cards: CardData[], playingDeck: number) => {
   const groupedCards: Record<number, CardData[]> = {};
 
+  // Group cards by rank
   for (const card of cards) {
     if (!groupedCards[card.rank]) {
       groupedCards[card.rank] = [];
@@ -44,7 +32,18 @@ const useCard = (cards: CardData[], playingDeck: number) => {
       imageUrl: cardArray[0].imageUrl,
     });
   }
+
   const [cardCounts, setCardCounts] = useLocalStorage<CardCount[]>('cardCounts', initialCards);
+
+  // Retrieve history from localStorage or initialize it
+  const [history, setHistory] = useState<CardCount[][]>(
+    JSON.parse(localStorage.getItem('cardHistory') || '[]') || []
+  );
+
+  useEffect(() => {
+    // Save history to localStorage whenever it changes
+    localStorage.setItem('cardHistory', JSON.stringify(history));
+  }, [history]);
 
   useEffect(() => {
     setCardCounts(prevCounts =>
@@ -53,10 +52,27 @@ const useCard = (cards: CardData[], playingDeck: number) => {
         count: Math.min(card.originalCount * deckCount, card.count),
       }))
     );
-  }, [deckCount]);
+  }, [deckCount, setCardCounts]);
 
-  const isAceCard = (rank: number) => rank === 1; // Check if the card is an Ace
-  const isTenValueCard = (rank: number) => [10, 11, 12, 13].includes(rank); // 10, Jack, Queen, King
+  const updateCardCounts = (updatedCounts: CardCount[]) => {
+    const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
+    setTotalCardsRemaining(newTotal);
+
+    const tensCount = updatedCounts.reduce(
+      (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
+      0
+    );
+    setNumberOfTens(tensCount);
+
+    const acesCount = updatedCounts.reduce(
+      (count, card) => count + (isAceCard(card.rank) ? card.count : 0),
+      0
+    );
+    setNumberOfAces(acesCount);
+  };
+
+  const isAceCard = (rank: number) => rank === 1;
+  const isTenValueCard = (rank: number) => [10, 11, 12, 13].includes(rank);
 
   const handleAddClick = (cardName: string) => {
     setCardCounts(prevCounts => {
@@ -65,22 +81,10 @@ const useCard = (cards: CardData[], playingDeck: number) => {
           ? { ...card, count: card.count + 1 }
           : card
       );
-      const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
-      setTotalCardsRemaining(newTotal);
 
-      // Count if a 10-value card or an Ace was played
-      const tensCount = updatedCounts.reduce(
-        (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
-        0
-      );
-      setNumberOfTens(tensCount);
-
-      const acesCount = updatedCounts.reduce(
-        (count, card) => count + (isAceCard(card.rank) ? card.count : 0),
-        0
-      );
-      setNumberOfAces(acesCount);
-
+      // Save current state to history before updating
+      setHistory(prevHistory => [...prevHistory, prevCounts]);
+      updateCardCounts(updatedCounts);
       return updatedCounts;
     });
   };
@@ -92,22 +96,10 @@ const useCard = (cards: CardData[], playingDeck: number) => {
           ? { ...card, count: card.count - 1 }
           : card
       );
-      const newTotal = updatedCounts.reduce((sum, card) => sum + card.count, 0);
-      setTotalCardsRemaining(newTotal);
 
-      // Update count of 10-value cards and Aces
-      const tensCount = updatedCounts.reduce(
-        (count, card) => count + (isTenValueCard(card.rank) ? card.count : 0),
-        0
-      );
-      setNumberOfTens(tensCount);
-
-      const acesCount = updatedCounts.reduce(
-        (count, card) => count + (isAceCard(card.rank) ? card.count : 0),
-        0
-      );
-      setNumberOfAces(acesCount);
-
+      // Save current state to history before updating
+      setHistory(prevHistory => [...prevHistory, prevCounts]);
+      updateCardCounts(updatedCounts);
       return updatedCounts;
     });
   };
@@ -117,7 +109,22 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setCardCounts(initialCards);
     setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
     setNumberOfTens(0);
-    setNumberOfAces(0); 
+    setNumberOfAces(0);
+    setHistory([]); // Clear history on reset
+    localStorage.removeItem('cardHistory'); // Clear history from localStorage
+  };
+
+  const handleUndo = () => {
+    setHistory(prevHistory => {
+      const lastState = prevHistory[prevHistory.length - 1];
+      if (lastState) {
+        // Restore the last state and remove it from history
+        setCardCounts(lastState);
+        updateCardCounts(lastState);
+        return prevHistory.slice(0, -1);
+      }
+      return prevHistory; // No history to undo
+    });
   };
 
   useEffect(() => {
@@ -136,9 +143,9 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setDeckCount,
     numberOfTens,
     totalCardsPlayed,
-    numberOfAces, 
+    numberOfAces,
+    handleUndo
   } as const;
 };
 
 export default useCard;
-

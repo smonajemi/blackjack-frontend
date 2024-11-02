@@ -6,6 +6,7 @@ import { Delete as DeleteIcon, Add as AddIcon, ArrowRightOutlined, ArrowLeftOutl
 import PageHeader from './PageHeader';
 import { CardData } from '../../types/card.types';
 import useCard from '../hooks/useCard';
+import CustomButton from 'src/components/CustomButton';
 
 const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards, playingDeck }) => {
   const {
@@ -17,7 +18,8 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
     handleRemoveClick,
     handleReset,
     numberOfTens,
-    numberOfAces
+    numberOfAces,
+    handleUndo
   } = useCard(cards, playingDeck);
 
   return (
@@ -27,9 +29,12 @@ const CardGrid: React.FC<{ cards: CardData[], playingDeck: number }> = ({ cards,
       ) : (
         <Box position="relative" minHeight="100vh" >
             <Box display="flex" justifyContent="center" alignItems="center" marginBottom={2}>
-            <Button variant="outlined" color="error" onClick={handleReset} style={{ marginRight: 15 }}>
+            <CustomButton variant="outlined" color={"error"} onClick={handleReset} style={{ marginRight: 15 }}>
               Start Over
-            </Button>
+            </CustomButton>
+            <CustomButton variant="outlined" color={"warning"} onClick={handleUndo} style={{ marginRight: 15 }}>
+              Undo
+            </CustomButton>
           </Box>
           
           <PageHeader numberOfTens={numberOfTens} numberOfAces={numberOfAces} deckCount={deckCount} cardsRemaining={totalCardsRemaining} chancesToWin={0} totalWins={0} totalLosses={0} pushes={0} blackjackCount={0} dealersUpCard={0} playerHandValue={0} dealerHandValue={0} cardsPlayed={0} numberOfSplits={0} numberOfDoubleDowns={0} winningPercentage={0} lastHandResult={'Win'} gameRoundNumber={0} highScore={0} riskAssessment={'Low'} />

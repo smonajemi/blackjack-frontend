@@ -51,7 +51,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   numberOfTens,
   numberOfAces
 }) => {
-  const Skeleton = useGrid();
+  const { Skeleton } = useGrid();
 
 
   // Create an array of stats to be displayed
@@ -82,7 +82,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <Grid container spacing={1} style={{ marginBottom: 10, marginTop: 2 }}>
     <Grid item xs={12}>
-      <Skeleton height={120}>
+      <Skeleton height={10}>
         <Box
           sx={{
             display: 'flex',
