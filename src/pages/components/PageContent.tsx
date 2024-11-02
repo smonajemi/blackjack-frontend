@@ -12,11 +12,10 @@ interface PageContentProps {
 }
 
 const PageContent: React.FC<PageContentProps> = ({ pathname, playingDeck, setPlayingDeck }) => {
-  // Determine which content to display based on the pathname
   const renderPageContent = () => {
     switch (pathname) {
       case '/dashboard':
-        return <Grid container spacing={0}><DashboardGrid /></Grid>
+        return <Grid container spacing={0}><DashboardGrid /></Grid>;
       case '/blackjack':
         return (
           <Grid container spacing={0}>
@@ -31,6 +30,7 @@ const PageContent: React.FC<PageContentProps> = ({ pathname, playingDeck, setPla
         return <Typography variant="h4">Select a tab to view content</Typography>;
     }
   };
+  
 
   return (
     <Box

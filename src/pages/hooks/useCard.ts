@@ -118,12 +118,11 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setHistory(prevHistory => {
       const lastState = prevHistory[prevHistory.length - 1];
       if (lastState) {
-        // Restore the last state and remove it from history
         setCardCounts(lastState);
         updateCardCounts(lastState);
         return prevHistory.slice(0, -1);
       }
-      return prevHistory; // No history to undo
+      return prevHistory; 
     });
   };
 

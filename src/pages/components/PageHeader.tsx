@@ -82,14 +82,14 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <Grid container spacing={1} style={{ marginBottom: 10, marginTop: 2 }}>
     <Grid item xs={12}>
-      <Skeleton height={10}>
+      <Skeleton height={75}>
         <Box
           sx={{
             display: 'flex',
-            flexWrap: 'wrap', // Allow wrapping of items
+            flexWrap: 'wrap', 
             alignItems: 'center',
             width: '100%',
-            padding: 1, // Add padding for better spacing
+            padding: 1, 
           }}
         >
           {stats.map((stat, index) => (

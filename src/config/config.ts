@@ -39,7 +39,6 @@ export const demoTheme = extendTheme({
 
 export const useRouter = (initialPath: string): Router => {
   const [pathname, setPathname] = React.useState(initialPath);
-console.log(pathname)
   const router = React.useMemo(
     () => ({
       pathname,
