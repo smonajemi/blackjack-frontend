@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Typography, Box, List, ListItem } from '@mui/material';
+import { Grid, Typography, Box, List, ListItem, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import useGrid from '../hooks/useGrid';
 
@@ -58,25 +58,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   const stats = [
     { label: 'Decks', value: deckCount },
     { label: 'Cards Remaining', value: cardsRemaining },
-    // { label: 'Chances to Win', value: `${chancesToWin}%` },
-    // { label: 'Total Wins', value: totalWins },
-    // { label: 'Total Losses', value: totalLosses },
-    // { label: 'Pushes', value: pushes },
-    // { label: 'Blackjack Count', value: blackjackCount },
-    // { label: "Dealer's Up Card", value: dealersUpCard },
-    // { label: 'Player Hand Value', value: playerHandValue },
-    // { label: 'Dealer Hand Value', value: dealerHandValue },
-    // { label: 'Cards Played', value: cardsPlayed },
-    // { label: 'Number of Splits', value: numberOfSplits },
-    // { label: 'Number of Double Downs', value: numberOfDoubleDowns },
-    // { label: 'Winning Percentage', value: `${winningPercentage}%` },
-    // { label: 'Last Hand Result', value: lastHandResult },
-    // // { label: 'Cards Remaining in Decks', value: cardsRemainingInDecks },
-    // { label: 'Game Round Number', value: gameRoundNumber },
-    // { label: 'High Score', value: `$${highScore}` },
-    // { label: 'Risk Assessment', value: riskAssessment },
-    { label: 'Tens Played', value: numberOfTens },
-    { label: 'Aces Played', value: numberOfAces },
+    { label: 'Tens Remaining', value: numberOfTens },
+    { label: 'Aces Remaining', value: numberOfAces },
+    { label: 'Chances to Win', value: `${chancesToWin}%` },
   ];
 
   return (
@@ -86,10 +70,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
         <Box
           sx={{
             display: 'flex',
-            flexWrap: 'wrap', 
             alignItems: 'center',
             width: '100%',
-            padding: 1, 
+            padding: 1,
           }}
         >
           {stats.map((stat, index) => (
@@ -99,10 +82,22 @@ const PageHeader: React.FC<PageHeaderProps> = ({
               </Typography>
             </Box>
           ))}
+          {/* Spacer box to push input to the far right */}
+          <Box sx={{ ml: 'auto' }}>
+            <TextField
+              variant="outlined"
+              placeholder="Enter value"
+              size="small"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  height: '40px', // Adjust height as needed
+                },
+              }}
+            />
+          </Box>
         </Box>
       </Skeleton>
     </Grid>
-    <Grid item xs={12} />
   </Grid>
   );
 };

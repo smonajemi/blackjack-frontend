@@ -18,10 +18,11 @@ const Dashboard: React.FC = () => {
                 logo: <img src="" alt="Logo" />,
                 title: 'JP21',
             }}
-        >
+            >
+
             <DashboardLayout>
                 <PageContent 
-                    pathname={router.pathname} // Use pathname from custom hook
+                    pathname={router.pathname}
                     playingDeck={playingDeck} 
                     setPlayingDeck={setPlayingDeck} 
                 />
