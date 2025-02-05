@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
 
-// Define Skeleton component outside of the hook
 const Skeleton = styled('div')<{ height: number }>(({ theme, height }) => ({
     backgroundColor: theme.palette.action.hover,
     borderRadius: theme.shape.borderRadius,
