@@ -5,7 +5,6 @@ import { CardCount, CardData } from '../../types/card.types';
 const useCard = (cards: CardData[], playingDeck: number) => {
   const groupedCards: Record<number, CardData[]> = {};
 
-  // Group cards by rank
   for (const card of cards) {
     if (!groupedCards[card.rank]) {
       groupedCards[card.rank] = [];
@@ -35,13 +34,11 @@ const useCard = (cards: CardData[], playingDeck: number) => {
 
   const [cardCounts, setCardCounts] = useLocalStorage<CardCount[]>('cardCounts', initialCards);
 
-  // Retrieve history from localStorage or initialize it
   const [history, setHistory] = useState<CardCount[][]>(
     JSON.parse(localStorage.getItem('cardHistory') || '[]') || []
   );
 
   useEffect(() => {
-    // Save history to localStorage whenever it changes
     localStorage.setItem('cardHistory', JSON.stringify(history));
   }, [history]);
 
@@ -82,7 +79,6 @@ const useCard = (cards: CardData[], playingDeck: number) => {
           : card
       );
 
-      // Save current state to history before updating
       setHistory(prevHistory => [...prevHistory, prevCounts]);
       updateCardCounts(updatedCounts);
       return updatedCounts;
@@ -97,7 +93,6 @@ const useCard = (cards: CardData[], playingDeck: number) => {
           : card
       );
 
-      // Save current state to history before updating
       setHistory(prevHistory => [...prevHistory, prevCounts]);
       updateCardCounts(updatedCounts);
       return updatedCounts;
@@ -110,8 +105,8 @@ const useCard = (cards: CardData[], playingDeck: number) => {
     setTotalCardsRemaining(initialCards.reduce((sum, card) => sum + card.count, 0));
     setNumberOfTens(0);
     setNumberOfAces(0);
-    setHistory([]); // Clear history on reset
-    localStorage.removeItem('cardHistory'); // Clear history from localStorage
+    setHistory([]); 
+    localStorage.removeItem('cardHistory');
   };
 
   const handleUndo = () => {
