@@ -9,11 +9,10 @@ const useCustomPath = (): string => {
         sessionStorage.setItem('currentPath', currentPath);
     }, [location]);
 
-    // Set the path on initial load if available in sessionStorage
     useEffect(() => {
         const storedPath = sessionStorage.getItem('currentPath');
         if (storedPath) {
-            window.history.replaceState(null, '', storedPath); // Update the URL without reloading
+            window.history.replaceState(null, '', storedPath); 
         }
     }, []);
 
